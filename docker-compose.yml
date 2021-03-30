@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    container_name: telegram-bot-backend
+    restart: unless-stopped
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TOKEN}
+    networks:
+      - telegram-bot-network
+    command: python3.8 main.py
+
+networks:
+  telegram-bot-network:
+    driver: bridge
